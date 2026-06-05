@@ -1,0 +1,466 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Mold | Your Ecological Partner</title>
+    <style>
+        /* Minimalist Theme & Variables */
+        :root {
+            --primary: #2E513B; 
+            --secondary: #C67139; 
+            --bg-light: #FFFFFF;
+            --bg-alt: #F4F7F5;
+            --text-main: #212529;
+            --text-muted: #55605B;
+            --border-color: #E9ECEF;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* Navbar */
+        header {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .btn-login {
+            border: 1px solid var(--primary);
+            color: var(--primary) !important;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .btn-login:hover {
+            background-color: var(--bg-alt);
+        }
+
+        .btn-portal {
+            background-color: var(--primary);
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        
+        .btn-portal:hover {
+            background-color: #1e3627;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6rem 0;
+            gap: 50px;
+            background-color: var(--bg-alt);
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            flex: 1;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 14px 32px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        /* Sections General */
+        .section-padding {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+        }
+
+        /* Products Section */
+        .grid-5 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+        }
+
+        .product-card h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .product-card p {
+            color: var(--secondary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Value Props (Comparison) */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .value-card {
+            background: var(--bg-alt);
+            padding: 40px 30px;
+            border-radius: 8px;
+            border-top: 4px solid var(--primary);
+        }
+
+        .value-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .value-card p {
+            color: var(--text-muted);
+        }
+
+        /* Science/Safety */
+        .safety-banner {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+            border-radius: 12px;
+            margin: 4rem 0;
+        }
+
+        .safety-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 3rem;
+        }
+
+        .safety-item h4 {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1A2F22;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 3rem;
+            text-align: left;
+        }
+
+        .footer-brand h2 {
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .footer-contact h4 {
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+
+        .footer-contact p {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 4rem 5%;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="#" class="brand-logo">
+                <img src="ECO MOLD logo 1 .png" alt="Eco Mold Logo" style="height: 50px;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#advantage">Advantage</a></li>
+                <li><a href="#" class="btn-login">Client Login</a></li>
+                <li><a href="#" class="btn-portal">Admin Login</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
+            <div class="hero-content">
+                <h1>Your recipe is 5-star. Why is your packaging 0-star?</h1>
+                <p>We aren't selling a plate, we are protecting their art. Join the Circular Elite and elevate your brand with intelligent, sustainable packaging solutions.</p>
+                <a href="#products" class="btn-primary">Stop Sending Trash</a>
+            </div>
+            <div class="hero-image">
+                <img src="eco_mold_websiteimage01.webp" alt="Sustainable Food Packaging">
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="section-padding container">
+        <h2 class="section-title">Your All-in-One Sustainable Armory</h2>
+        <p class="section-subtitle">Born from Earth. Engineered for the City. Explore our range of pure, sustainable materials designed to handle high-durability transit and exquisite presentation.</p>
+
+        <div class="grid-5">
+            <div class="product-card">
+                <img src="eco_mold_bagasse.jpg" alt="Bagasse" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 15px;">
+                <h3>Bagasse</h3>
+                <p>The Heat-Proof Hero</p>
+                <div class="product-desc">Heat without the harming. Enjoy zero chemical leaching at high temperatures, perfect for hot culinary deliveries.</div>
+            </div>
+
+            <div class="product-card">
+                <img src="eco_mold_corn strach.avif" alt="Corn Starch" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 15px;">
+                <h3>Corn Starch</h3>
+                <p>The "Invisible" Bio-Shield</p>
+                <div class="product-desc">A transparent, durable barrier that protects your food while remaining completely compostable.</div>
+            </div>
+
+            <div class="product-card">
+                <img src="eco_mold_wooden.jpeg" alt="Wooden Cutlery" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 15px;">
+                <h3>Wooden Cutlery</h3>
+                <p>The Splinter-Free Luxury</p>
+                <div class="product-desc">Elevate the dining experience with smooth, high-quality utensils that respect both the meal and the environment.</div>
+            </div>
+
+            <div class="product-card">
+                <img src="eco_cotton_bag.jpg" alt="Recycled Cotton" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 15px;">
+                <h3>Recycled Cotton</h3>
+                <p>The Mobile Billboard</p>
+                <div class="product-desc">Durable bags that promote your brand long after delivery, creating lasting visibility.</div>
+            </div>
+
+            <div class="product-card">
+                <img src="eco_rice_husk.jpg" alt="Rice Husk" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 15px;">
+                <h3>Rice Husk</h3>
+                <p>Circle of Sustainability</p>
+                <div class="product-desc">High-density structural materials repurposed from agricultural waste into premium packaging.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="advantage" class="section-padding bg-alt">
+        <div class="container">
+            <h2 class="section-title">Visionary Choices for Sustainability</h2>
+            <p class="section-subtitle">Transition to Eco Mold and transform your operational overhead into a sustainable advantage, powered by backend market analytics.</p>
+
+            <div class="grid-3">
+                <div class="value-card">
+                    <h3>Legal Status</h3>
+                    <p>Using plastic packaging risks fines and legal issues. Eco Mold products are fully compliant, ensuring absolute peace of mind for your business operations.</p>
+                </div>
+                <div class="value-card">
+                    <h3>GST Savings</h3>
+                    <p>Transitioning to Eco Mold means reduced GST rates. Shift from 18% penalties on standard plastics to 5% savings, significantly enhancing your profit margins.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Customer Love</h3>
+                    <p>90% of consumers prefer sustainable packaging. Eco Mold transforms perceptions from "another plastic box" to "Wow, they care!", driving repeat business.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="safety-banner">
+            <h2>Science-Based Food Safety</h2>
+            <p style="max-width: 600px; margin: 15px auto;">We provide tested toxicological data, proving zero microplastics and zero chemical leaching, so you can focus strictly on the flavor.</p>
+            
+            <div class="safety-grid">
+                <div class="safety-item">
+                    <h4>Lab-Tested</h4>
+                    <p>Verified toxicological data supplied</p>
+                </div>
+                <div class="safety-item">
+                    <h4>No Microplastics</h4>
+                    <p>Enjoy meals without harmful contaminants</p>
+                </div>
+                <div class="safety-item">
+                    <h4>Zero Leaching</h4>
+                    <p>Safe at peak temperatures</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="ECO MOLD logo 1 .png" alt="Eco Mold Logo" style="height: 60px; background-color: #ffffff; padding: 5px 10px; border-radius: 6px; margin-bottom: 15px;">
+                    <p>Your Ecological Partner.</p>
+                    <p>From sugar mills to your kitchen, embrace sustainability.</p>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><strong>MIDHUN GB</strong>, Founder</p>
+                    <p>Phone: +91 7397578218</p>
+                    <p>Email: midhungb7@gmail.com</p>
+                    <p>Location: Jayanagar 9th Block</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Eco Mold. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
