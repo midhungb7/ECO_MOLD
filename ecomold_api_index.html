@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Mold | Your Ecological Partner</title>
+    <style>
+        /* Minimalist Theme & Variables */
+        :root {
+            --primary: #2E513B; 
+            --secondary: #C67139; 
+            --bg-light: #FFFFFF;
+            --bg-alt: #F4F7F5;
+            --text-main: #212529;
+            --text-muted: #55605B;
+            --border-color: #E9ECEF;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* Navbar */
+        header {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .btn-login {
+            border: 1px solid var(--primary);
+            color: var(--primary) !important;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            background: none;
+        }
+        
+        .btn-login:hover {
+            background-color: var(--bg-alt);
+        }
+
+        .btn-portal {
+            background-color: var(--primary);
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-portal:hover {
+            background-color: #1e3627;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6rem 0;
+            gap: 50px;
+            background-color: var(--bg-alt);
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            flex: 1;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 14px 32px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        /* Sections General */
+        .section-padding {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+        }
+
+        /* Products Section & Drag-Drop */
+        .grid-5 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+            cursor: grab;
+        }
+
+        .product-card:active {
+            cursor: grabbing;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+        }
+
+        .product-card h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .product-card p {
+            color: var(--secondary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .drop-zone {
+            border: 2px dashed var(--primary);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+            background-color: var(--white);
+            color: var(--text-muted);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .drop-zone.dragover {
+            background-color: var(--bg-alt);
+            border-color: var(--secondary);
+        }
+
+        .cart-tag {
+            display: inline-flex;
+            align-items: center;
+            background: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 5px;
+        }
+        
+        .cart-tag span {
+            margin-left: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Video API Section */
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            background: #000;
+        }
+
+        .video-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .video-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .video-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        /* Value Props (Comparison) */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .value-card {
+            background: var(--bg-alt);
+            padding: 40px 30px;
+            border-radius: 8px;
+            border-top: 4px solid var(--primary);
+        }
+
+        .value-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .value-card p {
+            color: var(--text-muted);
+        }
+
+        /* Science/Safety */
+        .safety-banner {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+            border-radius: 12px;
+            margin: 4rem 0;
+        }
+
+        .safety-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 3rem;
+        }
+
+        .safety-item h4 {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1A2F22;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 3rem;
+            text-align: left;
+        }
+
+        .footer-brand h2 {
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .footer-contact h4 {
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+
+        .footer-contact p {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Modals and Notifications */
+        .notification {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 2000;
+            font-weight: 500;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 4rem 5%;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="#" class="brand-logo">
+                <img src="ECO MOLD logo 1 .png" style="height: 50px;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#advantage">Advantage</a></li>
+                <li><button class="btn-login" onclick="openLogin('Client')">Client Login</button></li>
+                <li><button class="btn-portal" onclick="openLogin('Admin')">Admin Login</button></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero" id="about">
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
+            <div class="hero-content">
+                <h1 id="welcome-message">Your recipe is 5-star. Why is your packaging 0-star?</h1>
+                <p>We aren't selling a plate, we are protecting their art. Join the Circular Elite and elevate your brand with intelligent, sustainable packaging solutions.</p>
+                <a href="#products" class="btn-primary">Stop Sending Trash</a>
+            </div>
+            <div class="hero-image">
+                <img src="eco_mold_websiteimage01.webp" alt="Sustainable Food Packaging">
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="section-padding container bg-alt">
+        <h2 class="section-title">Your All-in-One Sustainable Armory</h2>
+        <p class="section-subtitle">Born from Earth. Engineered for the City. Drag and drop materials into your quote cart below.</p>
+
+        <div class="grid-5" id="product-grid">
+            <div class="product-card" draggable="true" data-product="Bagasse">
+                <img src="eco_mold_bagasse.jpg" alt="Bagasse" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; pointer-events: none;">
+                <h3>Bagasse</h3>
+                <p>The Heat-Proof Hero</p>
+                <div class="product-desc">Heat without the harming. Enjoy zero chemical leaching at high temperatures.</div>
+            </div>
+
+            <div class="product-card" draggable="true" data-product="Corn Starch">
+                <img src="eco_mold_corn strach.avif" alt="Corn Starch" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; pointer-events: none;">
+                <h3>Corn Starch</h3>
+                <p>The "Invisible" Bio-Shield</p>
+                <div class="product-desc">A transparent, durable barrier that protects your food while remaining completely compostable.</div>
+            </div>
+
+            <div class="product-card" draggable="true" data-product="Wooden Cutlery">
+                <img src="eco_mold_websiteimage01.webp" alt="Wooden Cutlery" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; pointer-events: none;">
+                <h3>Wooden Cutlery</h3>
+                <p>The Splinter-Free Luxury</p>
+                <div class="product-desc">Elevate the dining experience with smooth, high-quality utensils.</div>
+            </div>
+
+            <div class="product-card" draggable="true" data-product="Recycled Cotton">
+                <img src="eco_cotton_bag.jpg" alt="Recycled Cotton" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; pointer-events: none;">
+                <h3>Recycled Cotton</h3>
+                <p>The Mobile Billboard</p>
+                <div class="product-desc">Durable bags that promote your brand long after delivery, creating lasting visibility.</div>
+            </div>
+
+            <div class="product-card" draggable="true" data-product="Rice Husk">
+                <img src="eco_rice_husk.jpg" alt="Rice Husk" style="width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; pointer-events: none;">
+                <h3>Rice Husk</h3>
+                <p>Circle of Sustainability</p>
+                <div class="product-desc">High-density structural materials repurposed from agricultural waste into premium packaging.</div>
+            </div>
+        </div>
+
+        <div class="drop-zone" id="quote-cart">
+            <h3 style="color: var(--primary); margin-bottom: 10px;">Request a Custom Quote</h3>
+            <p style="margin-bottom: 15px;">Drag products here to build your packaging portfolio.</p>
+            <div id="cart-items" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; min-height: 40px;">
+                </div>
+        </div>
+    </section>
+
+    <section class="section-padding container">
+        <h2 class="section-title">See the Eco Mold Difference</h2>
+        <p class="section-subtitle">Watch how our biogenic composites withstand high-durability transit without compromising the environment.</p>
+        
+        <div class="video-container">
+            <video id="promoVideo" width="100%" poster="https://images.unsplash.com/photo-1585807466545-21d37ee3d530?auto=format&fit=crop&w=1200&q=80">
+                <source src="create_a_video_for_eco_mold_th.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+        
+        <div class="video-controls">
+            <button class="video-btn" onclick="playPauseVideo()" id="playPauseBtn">Play Presentation</button>
+            <button class="video-btn" onclick="muteUnmuteVideo()" id="muteBtn">Mute</button>
+            <button class="video-btn" onclick="restartVideo()">Restart</button>
+        </div>
+    </section>
+
+    <section id="advantage" class="section-padding bg-alt">
+        <div class="container">
+            <h2 class="section-title">Visionary Choices for Sustainability</h2>
+            <p class="section-subtitle">Transition to Eco Mold and transform your operational overhead into a sustainable advantage, powered by backend market analytics.</p>
+
+            <div class="grid-3">
+                <div class="value-card">
+                    <h3>Legal Status</h3>
+                    <p>Using plastic packaging risks fines and legal issues. Eco Mold products are fully compliant, ensuring absolute peace of mind for your business operations.</p>
+                </div>
+                <div class="value-card">
+                    <h3>GST Savings</h3>
+                    <p>Transitioning to Eco Mold means reduced GST rates. Shift from 18% penalties on standard plastics to 5% savings, significantly enhancing your profit margins.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Customer Love</h3>
+                    <p>90% of consumers prefer sustainable packaging. Eco Mold transforms perceptions from "another plastic box" to "Wow, they care!", driving repeat business.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="safety-banner">
+            <h2>Science-Based Food Safety</h2>
+            <p style="max-width: 600px; margin: 15px auto;">We provide tested toxicological data, proving zero microplastics and zero chemical leaching, so you can focus strictly on the flavor.</p>
+            
+            <div class="safety-grid">
+                <div class="safety-item">
+                    <h4>Lab-Tested</h4>
+                    <p>Verified toxicological data supplied</p>
+                </div>
+                <div class="safety-item">
+                    <h4>No Microplastics</h4>
+                    <p>Enjoy meals without harmful contaminants</p>
+                </div>
+                <div class="safety-item">
+                    <h4>Zero Leaching</h4>
+                    <p>Safe at peak temperatures</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="ECO MOLD logo 1 .png" alt="Eco Mold Logo" style="height: 60px; background-color: #ffffff; padding: 5px 10px; border-radius: 6px; margin-bottom: 15px;">
+                    <p>Your Ecological Partner.</p>
+                    <p>From sugar mills to your kitchen, embrace sustainability.</p>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><strong>MIDHUN GB</strong></p>
+                    <p>Phone: +91 7397578218</p>
+                    <p>Email: midhungb7@gmail.com</p>
+                    <p>Location: Jayanagar 9th Block</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Eco Mold. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast" class="notification">Notification message</div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle" style="color: var(--primary); margin-bottom: 20px;">Portal Login</h2>
+            <input type="text" id="username" placeholder="Email / Username" style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
+            <button onclick="simulateLogin()" style="background: var(--secondary); color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold; font-size: 1rem;">Login Securely</button>
+            <p onclick="closeLogin()" style="margin-top: 20px; color: var(--text-muted); cursor: pointer; font-size: 0.9rem; text-decoration: underline;">Cancel</p>
+        </div>
+    </div>
+
+    <script>
+        // Utility: Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 3000);
+        }
+
+        // ==========================================
+        // 1. LOCAL STORAGE API
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const visitCount = localStorage.getItem('ecoMoldVisits');
+            const welcomeHeader = document.getElementById('welcome-message');
+            
+            if (!visitCount) {
+                localStorage.setItem('ecoMoldVisits', '1');
+                showToast("Welcome to Eco Mold! Your Ecological Partner.");
+            } else {
+                let newCount = parseInt(visitCount) + 1;
+                localStorage.setItem('ecoMoldVisits', newCount.toString());
+                welcomeHeader.innerHTML = "Welcome Back! Let's continue upgrading your packaging.";
+            }
+        });
+
+        // ==========================================
+        // 2. SESSION STORAGE API
+        // ==========================================
+        let activePortalType = '';
+
+        function openLogin(type) {
+            activePortalType = type;
+            document.getElementById('modalTitle').innerText = `${type} Portal Login`;
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function closeLogin() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        function simulateLogin() {
+            const user = document.getElementById('username').value || 'Guest User';
+            sessionStorage.setItem('activePortal', activePortalType);
+            sessionStorage.setItem('activeUser', user);
+            closeLogin();
+            showToast(`Successfully logged in as ${user} (${activePortalType})`);
+            triggerDesktopNotification(activePortalType);
+        }
+
+        // ==========================================
+        // 3. WEB NOTIFICATIONS API
+        // ==========================================
+        function triggerDesktopNotification(portalType) {
+            if (!("Notification" in window)) {
+                console.log("This browser does not support desktop notifications.");
+                return;
+            }
+
+            if (Notification.permission === "granted") {
+                new Notification("Eco Mold Secure Access", { 
+                    body: `You are now connected to the ${portalType} dashboard.`,
+                    icon: 'ECO MOLD logo 1 .png' 
+                });
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then(function (permission) {
+                    if (permission === "granted") {
+                        new Notification("Eco Mold Setup Complete", { 
+                            body: "Notifications enabled. We will alert you on order updates.",
+                            icon: 'ECO MOLD logo 1 .png'
+                        });
+                    }
+                });
+            }
+        }
+
+        // ==========================================
+        // 4. DRAG AND DROP API
+        // ==========================================
+        const cards = document.querySelectorAll('.product-card');
+        const dropZone = document.getElementById('quote-cart');
+        const cartItemsContainer = document.getElementById('cart-items');
+        let cartArray = [];
+
+        cards.forEach(card => {
+            card.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', card.getAttribute('data-product'));
+                card.style.opacity = '0.4'; 
+            });
+            card.addEventListener('dragend', () => {
+                card.style.opacity = '1';
+            });
+        });
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault(); 
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            
+            const productName = e.dataTransfer.getData('text/plain');
+            
+            if (productName && !cartArray.includes(productName)) {
+                cartArray.push(productName);
+                
+                const tag = document.createElement('div');
+                tag.className = 'cart-tag';
+                tag.innerHTML = `${productName} <span onclick="removeProduct('${productName}', this)">✖</span>`;
+                
+                cartItemsContainer.appendChild(tag);
+                showToast(`${productName} added to Quote Cart`);
+            } else if (cartArray.includes(productName)) {
+                showToast(`${productName} is already in the cart.`);
+            }
+        });
+
+        window.removeProduct = function(name, element) {
+            cartArray = cartArray.filter(item => item !== name);
+            element.parentElement.remove();
+        }
+
+        // ==========================================
+        // 5. VIDEO API
+        // ==========================================
+        const video = document.getElementById("promoVideo");
+        const playPauseBtn = document.getElementById("playPauseBtn");
+        const muteBtn = document.getElementById("muteBtn");
+
+        function playPauseVideo() {
+            if (video.paused) {
+                video.play();
+                playPauseBtn.innerText = "Pause Presentation";
+            } else {
+                video.pause();
+                playPauseBtn.innerText = "Play Presentation";
+            }
+        }
+
+        function muteUnmuteVideo() {
+            if (video.muted) {
+                video.muted = false;
+                muteBtn.innerText = "Mute";
+            } else {
+                video.muted = true;
+                muteBtn.innerText = "Unmute";
+            }
+        }
+
+        function restartVideo() {
+            video.currentTime = 0;
+            video.play();
+            playPauseBtn.innerText = "Pause Presentation";
+        }
+
+        video.addEventListener('ended', () => {
+            playPauseBtn.innerText = "Replay Presentation";
+        });
+
+    </script>
+</body>
+</html>
